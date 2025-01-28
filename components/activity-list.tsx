@@ -1,7 +1,14 @@
-import Link from "next/link"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import type { Activity } from "@/types/database"
+import Link from 'next/link'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+
+interface Activity {
+  id: string
+  name: string
+  type: string
+  description: string
+  trips: Array<{ id: string; name: string; duration: string }>
+}
 
 interface ActivityListProps {
   activities: Activity[]
@@ -11,40 +18,27 @@ export function ActivityList({ activities }: ActivityListProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {activities.map((activity) => (
-        <Link key={activity.id} href={`/activities/${activity.id}`}>
-          <Card className="hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <CardTitle className="flex justify-between items-start">
-                <span>{activity.name}</span>
-                <Badge
-                  variant={
-                    activity.difficulty === "Easy"
-                      ? "secondary"
-                      : activity.difficulty === "Moderate"
-                        ? "default"
-                        : "destructive"
-                  }
-                >
-                  {activity.difficulty}
-                </Badge>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-2">
-                <p className="text-muted-foreground">Duration: {activity.duration}</p>
-                <p className="font-semibold">Price: ${activity.price}</p>
-                <div className="space-y-1">
-                  <p className="font-medium">Highlights:</p>
-                  <ul className="list-disc list-inside text-sm text-muted-foreground">
-                    {activity.highlights.slice(0, 3).map((highlight, index) => (
-                      <li key={index}>{highlight}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </Link>
+        <Card key={activity.id} className="hover:shadow-lg transition-shadow">
+          <CardHeader>
+            <CardTitle className="flex justify-between items-start">
+              <span>{activity.name}</span>
+              <Badge>{activity.type}</Badge>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground mb-4">{activity.description}</p>
+            <h4 className="font-semibold mb-2">Available Trips:</h4>
+            <ul className="list-disc list-inside">
+              {activity.trips.map((trip) => (
+                <li key={trip.id}>
+                  <Link href={`/trips/${trip.id}`} className="text-blue-600 hover:underline">
+                    {trip.name} - {trip.duration}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
       ))}
     </div>
   )

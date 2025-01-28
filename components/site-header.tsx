@@ -11,7 +11,7 @@ export function SiteHeader() {
       <div className="container flex h-16 items-center">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <Image
-            src="https://sjc.microlink.io/CJ6kgOMNlJyZ6qGLLuS9GnFdqKWGKnRCn2o0ao5e1teehNA8EpXFcMfnM8RE38_0_QSx-r0xucA8uIL8iVfUUQ.jpeg"
+            src="/placeholder.svg?height=60&width=180"
             alt="HIMATREK Logo"
             width={180}
             height={60}
@@ -23,16 +23,13 @@ export function SiteHeader() {
             HOME
           </Link>
           <Link href="/destinations" className="transition-colors hover:text-primary">
-            DESTINATION
+            DESTINATIONS
           </Link>
           <Link href="/contact" className="transition-colors hover:text-primary">
             CONTACT US
           </Link>
           <Link href="/about" className="transition-colors hover:text-primary">
             ABOUT
-          </Link>
-          <Link href="/faq" className="transition-colors hover:text-primary">
-            FREQUENTLY ASKED QUESTION
           </Link>
         </nav>
         <Sheet>
@@ -48,16 +45,13 @@ export function SiteHeader() {
                 HOME
               </Link>
               <Link href="/destinations" className="text-sm font-medium">
-                DESTINATION
+                DESTINATIONS
               </Link>
               <Link href="/contact" className="text-sm font-medium">
                 CONTACT US
               </Link>
               <Link href="/about" className="text-sm font-medium">
                 ABOUT
-              </Link>
-              <Link href="/faq" className="text-sm font-medium">
-                FREQUENTLY ASKED QUESTION
               </Link>
             </nav>
           </SheetContent>

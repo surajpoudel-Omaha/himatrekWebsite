@@ -1,0 +1,119 @@
+{
+  "destinations": [
+    {
+      "id": "1",
+      "name": "Nepal",
+      "description": "Home to eight of the world's ten tallest mountains, including Mount Everest",
+      "imageUrl": "/placeholder.svg?height=400&width=600",
+      "activities": [
+        {
+          "id": "1",
+          "name": "Mountain Trekking",
+          "type": "Trekking",
+          "description": "Experience the majestic Himalayas on foot",
+          "trips": [
+            {
+              "id": "1",
+              "name": "Everest Base Camp Trek",
+              "duration": "15 Days",
+              "difficulty": "Challenging",
+              "price": 1800,
+              "highlights": ["View of Mount Everest", "Sherpa Culture", "Namche Bazaar", "Tengboche Monastery"],
+              "itinerary": [
+                {
+                  "day": 1,
+                  "title": "Arrival in Kathmandu",
+                  "description": "Welcome meeting and trek briefing",
+                  "accommodation": "Hotel in Kathmandu",
+                  "meals": "Welcome Dinner"
+                },
+                {
+                  "day": 2,
+                  "title": "Fly to Lukla and Trek to Phakding",
+                  "description": "Scenic flight to Lukla and begin the trek",
+                  "accommodation": "Teahouse in Phakding",
+                  "meals": "Breakfast, Lunch, Dinner",
+                  "elevation": "2,800m"
+                },
+                {
+                  "day": 3,
+                  "title": "Trek to Namche Bazaar",
+                  "description": "Challenging ascent to the Sherpa capital",
+                  "accommodation": "Teahouse in Namche Bazaar",
+                  "meals": "Breakfast, Lunch, Dinner",
+                  "elevation": "3,440m"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "name": "White Water Rafting",
+          "type": "Rafting",
+          "description": "Navigate thrilling rapids in Nepal's scenic rivers",
+          "trips": [
+            {
+              "id": "2",
+              "name": "Trishuli River Rafting",
+              "duration": "1 Day",
+              "difficulty": "Moderate",
+              "price": 80,
+              "highlights": ["Exciting rapids", "Beautiful scenery", "Suitable for beginners"],
+              "itinerary": [
+                {
+                  "day": 1,
+                  "title": "Trishuli River Adventure",
+                  "description": "Full day of rafting with lunch break",
+                  "accommodation": "N/A",
+                  "meals": "Lunch"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "India",
+      "description": "A land of diverse cultures, ancient traditions, and breathtaking landscapes",
+      "imageUrl": "/placeholder.svg?height=400&width=600",
+      "activities": [
+        {
+          "id": "3",
+          "name": "Cultural Tours",
+          "type": "Sightseeing",
+          "description": "Explore India's rich heritage and iconic landmarks",
+          "trips": [
+            {
+              "id": "3",
+              "name": "Golden Triangle Tour",
+              "duration": "6 Days",
+              "difficulty": "Easy",
+              "price": 800,
+              "highlights": ["Taj Mahal in Agra", "Pink City of Jaipur", "Delhi's historical sites"],
+              "itinerary": [
+                {
+                  "day": 1,
+                  "title": "Arrive in Delhi",
+                  "description": "Welcome meeting and city tour",
+                  "accommodation": "Hotel in Delhi",
+                  "meals": "Welcome Dinner"
+                },
+                {
+                  "day": 2,
+                  "title": "Delhi to Agra",
+                  "description": "Travel to Agra and visit Taj Mahal",
+                  "accommodation": "Hotel in Agra",
+                  "meals": "Breakfast, Dinner"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

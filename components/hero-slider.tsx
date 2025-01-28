@@ -6,8 +6,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 
 const slides = [
   {
-    image:
-      "https://sjc.microlink.io/CJ6kgOMNlJyZ6qGLLuS9GnFdqKWGKnRCn2o0ao5e1teehNA8EpXFcMfnM8RE38_0_QSx-r0xucA8uIL8iVfUUQ.jpeg",
+    image: "/placeholder.svg?height=800&width=1200",
     title: "Trekking and Hiking",
     description: "Explore the majestic Himalayas with expert guides",
   },
