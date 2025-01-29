@@ -1,24 +1,24 @@
-import Link from "next/link"
-import Image from "next/image"
-import { Menu } from "lucide-react"
+import Link from "next/link";
+import Image from "next/image";
+import { Menu } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center">
-        <Link href="/" className="mr-6 flex items-center space-x-2">
+      <div className="container flex h-16 items-center justify-between">
+        <Link href="/" className="flex items-center space-x-2 w-[180px]">
           <Image
-            src="/placeholder.svg?height=60&width=180"
+            src="/himatrekText.gif"
             alt="HIMATREK Logo"
             width={180}
             height={60}
             className="object-contain"
           />
         </Link>
-        <nav className="hidden md:flex flex-1 justify-center items-center space-x-6 text-sm font-medium">
+        <nav className="hidden md:flex flex-1 justify-end items-center space-x-6 text-sm font-medium">
           <Link href="/" className="transition-colors hover:text-primary">
             HOME
           </Link>
@@ -60,4 +60,3 @@ export function SiteHeader() {
     </header>
   )
 }
-

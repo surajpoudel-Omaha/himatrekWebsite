@@ -28,6 +28,14 @@ export default function DestinationPage({ params: { destinationId } }: { params:
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {destination.activities.map((activity) => (
           <Card key={activity.id} className="hover:shadow-lg transition-shadow">
+            <div className="relative h-48 w-full">
+              <Image
+                src={activity.imageUrl || "/placeholder.svg"}
+                alt={activity.name}
+                fill
+                className="object-cover rounded-t-lg"
+              />
+            </div>
             <CardHeader>
               <CardTitle className="flex justify-between items-center">
                 <span>{activity.name}</span>
@@ -37,10 +45,10 @@ export default function DestinationPage({ params: { destinationId } }: { params:
             <CardContent>
               <CardDescription className="mb-4">{activity.description}</CardDescription>
               <Link
-                href={`/destinations/${destinationId}/activities/${activity.id}`}
+                href={`/destinations/${destination.id}/activities/${activity.id}`}
                 className="text-blue-600 hover:underline"
               >
-                View Trips ({activity.trips.length})
+                View Trips
               </Link>
             </CardContent>
           </Card>

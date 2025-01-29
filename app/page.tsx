@@ -15,7 +15,7 @@ export default function Home() {
         <section className="py-16 px-4 md:px-6">
           <div className="container">
             <h2 className="text-3xl font-bold text-center mb-12">Popular Destinations</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
               {destinations.map((destination) => (
                 <Card key={destination.id} className="hover:shadow-lg transition-shadow">
                   <div className="relative h-48 w-full">
@@ -32,7 +32,7 @@ export default function Home() {
                   <CardContent>
                     <CardDescription className="mb-4">{destination.description}</CardDescription>
                     <Link href={`/destinations/${destination.id}`}>
-                      <Button>Explore Activities ({destination.activities.length})</Button>
+                      <Button>Explore Activities</Button>
                     </Link>
                   </CardContent>
                 </Card>

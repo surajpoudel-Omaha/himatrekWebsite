@@ -1,6 +1,9 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { useAuth } from "@/contexts/AuthContext"
+import Link from "next/link"
 import {
   type Destination,
   type Activity,
@@ -8,6 +11,7 @@ import {
   type ItineraryDay,
   getDestinations,
   getDestinationById,
+  addDestination,
 } from "@/lib/data"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -17,16 +21,37 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function ManageDestinations() {
+  const { isAuthenticated } = useAuth()
+  const router = useRouter()
   const [destinations, setDestinations] = useState<Destination[]>([])
   const [selectedDestination, setSelectedDestination] = useState<Destination | null>(null)
   const [newActivity, setNewActivity] = useState<Partial<Activity>>({})
   const [newTrip, setNewTrip] = useState<Partial<Trip>>({})
-  const [newItineraryDay, setNewItineraryDay] = useState<Partial<ItineraryDay>>({})
-  const [editingTripId, setEditingTripId] = useState<string | null>(null)
+  const [newDestination, setNewDestination] = useState<Partial<Destination>>({})
 
   useEffect(() => {
     setDestinations(getDestinations())
   }, [])
+
+  if (!isAuthenticated) {
+    router.push("/login")
+    return null
+  }
+
+  function handleAddDestination() {
+    if (newDestination.name && newDestination.description) {
+      const newDest: Destination = {
+        id: Date.now().toString(),
+        name: newDestination.name,
+        description: newDestination.description,
+        imageUrl: newDestination.imageUrl || "/placeholder.svg?height=400&width=600",
+        activities: [],
+      }
+      addDestination(newDest)
+      setDestinations([...destinations, newDest])
+      setNewDestination({})
+    }
+  }
 
   function handleAddActivity() {
     if (selectedDestination && newActivity.name && newActivity.type) {
@@ -41,6 +66,7 @@ export default function ManageDestinations() {
                 name: newActivity.name,
                 type: newActivity.type as Activity["type"],
                 description: newActivity.description || "",
+                imageUrl: newActivity.imageUrl || "/placeholder.svg?height=300&width=400",
                 trips: [],
               },
             ],
@@ -88,6 +114,7 @@ export default function ManageDestinations() {
                       duration: newTrip.duration,
                       difficulty: newTrip.difficulty as Trip["difficulty"],
                       price: Number(newTrip.price),
+                      imageUrl: newTrip.imageUrl || "/placeholder.svg?height=300&width=400",
                       highlights: [],
                       itinerary: [],
                     },
@@ -130,87 +157,44 @@ export default function ManageDestinations() {
     }
   }
 
-  function handleAddItineraryDay(activityId: string, tripId: string) {
-    if (selectedDestination && newItineraryDay.title && newItineraryDay.description) {
-      const updatedDestinations = destinations.map((dest) => {
-        if (dest.id === selectedDestination.id) {
-          return {
-            ...dest,
-            activities: dest.activities.map((activity) => {
-              if (activity.id === activityId) {
-                return {
-                  ...activity,
-                  trips: activity.trips.map((trip) => {
-                    if (trip.id === tripId) {
-                      const newDay: ItineraryDay = {
-                        day: trip.itinerary.length + 1,
-                        title: newItineraryDay.title,
-                        description: newItineraryDay.description,
-                        accommodation: newItineraryDay.accommodation || "",
-                        meals: newItineraryDay.meals || "",
-                        elevation: newItineraryDay.elevation,
-                      }
-                      return {
-                        ...trip,
-                        itinerary: [...trip.itinerary, newDay],
-                      }
-                    }
-                    return trip
-                  }),
-                }
-              }
-              return activity
-            }),
-          }
-        }
-        return dest
-      })
-      setDestinations(updatedDestinations)
-      setSelectedDestination(getDestinationById(selectedDestination.id) || null)
-      setNewItineraryDay({})
-    }
-  }
-
-  function handleRemoveItineraryDay(activityId: string, tripId: string, dayNumber: number) {
-    if (selectedDestination) {
-      const updatedDestinations = destinations.map((dest) => {
-        if (dest.id === selectedDestination.id) {
-          return {
-            ...dest,
-            activities: dest.activities.map((activity) => {
-              if (activity.id === activityId) {
-                return {
-                  ...activity,
-                  trips: activity.trips.map((trip) => {
-                    if (trip.id === tripId) {
-                      return {
-                        ...trip,
-                        itinerary: trip.itinerary
-                          .filter((day) => day.day !== dayNumber)
-                          .map((day, index) => ({
-                            ...day,
-                            day: index + 1,
-                          })),
-                      }
-                    }
-                    return trip
-                  }),
-                }
-              }
-              return activity
-            }),
-          }
-        }
-        return dest
-      })
-      setDestinations(updatedDestinations)
-      setSelectedDestination(getDestinationById(selectedDestination.id) || null)
-    }
-  }
-
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-3xl font-bold mb-4">Manage Destinations</h1>
+
+      <Card className="mb-8">
+        <CardHeader>
+          <CardTitle>Add New Destination</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="destination-name">Destination Name</Label>
+              <Input
+                id="destination-name"
+                value={newDestination.name || ""}
+                onChange={(e) => setNewDestination({ ...newDestination, name: e.target.value })}
+              />
+            </div>
+            <div>
+              <Label htmlFor="destination-description">Description</Label>
+              <Textarea
+                id="destination-description"
+                value={newDestination.description || ""}
+                onChange={(e) => setNewDestination({ ...newDestination, description: e.target.value })}
+              />
+            </div>
+            <div>
+              <Label htmlFor="destination-image">Image URL (optional)</Label>
+              <Input
+                id="destination-image"
+                value={newDestination.imageUrl || ""}
+                onChange={(e) => setNewDestination({ ...newDestination, imageUrl: e.target.value })}
+              />
+            </div>
+            <Button onClick={handleAddDestination}>Add Destination</Button>
+          </div>
+        </CardContent>
+      </Card>
 
       <div className="mb-8">
         <Label htmlFor="destination-select">Select Destination</Label>
@@ -265,6 +249,14 @@ export default function ManageDestinations() {
                   onChange={(e) => setNewActivity({ ...newActivity, description: e.target.value })}
                 />
               </div>
+              <div>
+                <Label htmlFor="activity-image">Activity Image URL</Label>
+                <Input
+                  id="activity-image"
+                  value={newActivity.imageUrl || ""}
+                  onChange={(e) => setNewActivity({ ...newActivity, imageUrl: e.target.value })}
+                />
+              </div>
               <Button onClick={handleAddActivity}>Add Activity</Button>
             </div>
           </div>
@@ -297,67 +289,12 @@ export default function ManageDestinations() {
                             <Button variant="destructive" onClick={() => handleRemoveTrip(activity.id, trip.id)}>
                               Remove Trip
                             </Button>
-                            <Button onClick={() => setEditingTripId(editingTripId === trip.id ? null : trip.id)}>
-                              {editingTripId === trip.id ? "Close Itinerary" : "Edit Itinerary"}
-                            </Button>
+                            <Link
+                              href={`/admin/destinations/${selectedDestination.id}/activities/${activity.id}/trips/${trip.id}/edit`}
+                            >
+                              <Button>Edit Trip</Button>
+                            </Link>
                           </div>
-
-                          {editingTripId === trip.id && (
-                            <div className="mt-4">
-                              <h5 className="text-md font-semibold mb-2">Itinerary</h5>
-                              {trip.itinerary.map((day) => (
-                                <div key={day.day} className="mb-2 p-2 border rounded">
-                                  <p>
-                                    <strong>Day {day.day}:</strong> {day.title}
-                                  </p>
-                                  <p>{day.description}</p>
-                                  <Button
-                                    variant="destructive"
-                                    size="sm"
-                                    onClick={() => handleRemoveItineraryDay(activity.id, trip.id, day.day)}
-                                  >
-                                    Remove Day
-                                  </Button>
-                                </div>
-                              ))}
-                              <div className="mt-4 space-y-2">
-                                <Input
-                                  placeholder="Day Title"
-                                  value={newItineraryDay.title || ""}
-                                  onChange={(e) => setNewItineraryDay({ ...newItineraryDay, title: e.target.value })}
-                                />
-                                <Textarea
-                                  placeholder="Day Description"
-                                  value={newItineraryDay.description || ""}
-                                  onChange={(e) =>
-                                    setNewItineraryDay({ ...newItineraryDay, description: e.target.value })
-                                  }
-                                />
-                                <Input
-                                  placeholder="Accommodation"
-                                  value={newItineraryDay.accommodation || ""}
-                                  onChange={(e) =>
-                                    setNewItineraryDay({ ...newItineraryDay, accommodation: e.target.value })
-                                  }
-                                />
-                                <Input
-                                  placeholder="Meals"
-                                  value={newItineraryDay.meals || ""}
-                                  onChange={(e) => setNewItineraryDay({ ...newItineraryDay, meals: e.target.value })}
-                                />
-                                <Input
-                                  placeholder="Elevation (optional)"
-                                  value={newItineraryDay.elevation || ""}
-                                  onChange={(e) =>
-                                    setNewItineraryDay({ ...newItineraryDay, elevation: e.target.value })
-                                  }
-                                />
-                                <Button onClick={() => handleAddItineraryDay(activity.id, trip.id)}>
-                                  Add Itinerary Day
-                                </Button>
-                              </div>
-                            </div>
-                          )}
                         </CardContent>
                       </Card>
                     ))}
@@ -392,6 +329,11 @@ export default function ManageDestinations() {
                       placeholder="Price"
                       value={newTrip.price || ""}
                       onChange={(e) => setNewTrip({ ...newTrip, price: Number(e.target.value) })}
+                    />
+                    <Input
+                      placeholder="Image URL"
+                      value={newTrip.imageUrl || ""}
+                      onChange={(e) => setNewTrip({ ...newTrip, imageUrl: e.target.value })}
                     />
                     <Button onClick={() => handleAddTrip(activity.id)}>Add Trip</Button>
                   </div>

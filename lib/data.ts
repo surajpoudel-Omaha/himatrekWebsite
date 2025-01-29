@@ -11,6 +11,7 @@ export type Activity = {
   name: string
   type: "Trekking" | "Rafting" | "Sightseeing" | "PeakClimbing"
   description: string
+  imageUrl: string
   trips: Trip[]
 }
 
@@ -20,6 +21,7 @@ export type Trip = {
   duration: string
   difficulty: "Easy" | "Moderate" | "Challenging"
   price: number
+  imageUrl: string
   highlights: string[]
   itinerary: ItineraryDay[]
 }
@@ -45,6 +47,7 @@ const destinations: Destination[] = [
         name: "Mountain Trekking",
         type: "Trekking",
         description: "Experience the majestic Himalayas on foot",
+        imageUrl: "/placeholder.svg?height=300&width=400",
         trips: [
           {
             id: "1",
@@ -52,6 +55,7 @@ const destinations: Destination[] = [
             duration: "14 Days",
             difficulty: "Challenging",
             price: 1800,
+            imageUrl: "/placeholder.svg?height=300&width=400",
             highlights: [
               "View of Mount Everest",
               "Sherpa Culture",
@@ -177,6 +181,7 @@ const destinations: Destination[] = [
             duration: "18 Days",
             difficulty: "Moderate",
             price: 1600,
+            imageUrl: "/placeholder.svg?height=300&width=400",
             highlights: [
               "Diverse landscapes",
               "Thorong La Pass (5,416m)",
@@ -217,6 +222,7 @@ const destinations: Destination[] = [
         name: "White Water Rafting",
         type: "Rafting",
         description: "Navigate thrilling rapids in Nepal's scenic rivers",
+        imageUrl: "/placeholder.svg?height=300&width=400",
         trips: [
           {
             id: "3",
@@ -224,6 +230,7 @@ const destinations: Destination[] = [
             duration: "1 Day",
             difficulty: "Moderate",
             price: 80,
+            imageUrl: "/placeholder.svg?height=300&width=400",
             highlights: ["Exciting rapids", "Beautiful scenery", "Suitable for beginners"],
             itinerary: [
               {
@@ -241,6 +248,7 @@ const destinations: Destination[] = [
             duration: "9 Days",
             difficulty: "Challenging",
             price: 1200,
+            imageUrl: "/placeholder.svg?height=300&width=400",
             highlights: ["Long river journey", "Diverse landscapes", "Class III-V rapids", "Camping on sandy beaches"],
             itinerary: [
               {
@@ -275,6 +283,7 @@ const destinations: Destination[] = [
         name: "Cultural Tours",
         type: "Sightseeing",
         description: "Explore India's rich heritage and iconic landmarks",
+        imageUrl: "/placeholder.svg?height=300&width=400",
         trips: [
           {
             id: "5",
@@ -282,6 +291,7 @@ const destinations: Destination[] = [
             duration: "6 Days",
             difficulty: "Easy",
             price: 800,
+            imageUrl: "/placeholder.svg?height=300&width=400",
             highlights: ["Taj Mahal in Agra", "Pink City of Jaipur", "Delhi's historical sites"],
             itinerary: [
               {
@@ -332,6 +342,183 @@ const destinations: Destination[] = [
       },
     ],
   },
+  {
+    id: "3",
+    name: "Tibet",
+    description: "The 'Roof of the World' with stunning landscapes and rich Buddhist culture",
+    imageUrl: "/placeholder.svg?height=400&width=600",
+    activities: [
+      {
+        id: "4",
+        name: "Spiritual Journey",
+        type: "Sightseeing",
+        description: "Explore ancient monasteries and experience Tibetan Buddhism",
+        imageUrl: "/placeholder.svg?height=300&width=400",
+        trips: [
+          {
+            id: "6",
+            name: "Lhasa and Everest Base Camp Tour",
+            duration: "8 Days",
+            difficulty: "Moderate",
+            price: 1500,
+            imageUrl: "/placeholder.svg?height=300&width=400",
+            highlights: [
+              "Potala Palace",
+              "Jokhang Temple",
+              "Sera Monastery",
+              "Yamdrok Lake",
+              "Everest Base Camp (North Side)",
+            ],
+            itinerary: [
+              {
+                day: 1,
+                title: "Arrival in Lhasa",
+                description: "Acclimatization and welcome dinner",
+                accommodation: "Hotel in Lhasa",
+                meals: "Welcome Dinner",
+              },
+              {
+                day: 2,
+                title: "Lhasa Sightseeing",
+                description: "Visit Potala Palace and Jokhang Temple",
+                accommodation: "Hotel in Lhasa",
+                meals: "Breakfast, Lunch",
+              },
+              // ... (other days of the itinerary)
+            ],
+          },
+        ],
+      },
+      {
+        id: "5",
+        name: "High Altitude Trekking",
+        type: "Trekking",
+        description: "Challenge yourself with treks in the Tibetan plateau",
+        imageUrl: "/placeholder.svg?height=300&width=400",
+        trips: [
+          {
+            id: "7",
+            name: "Mount Kailash Pilgrimage Trek",
+            duration: "15 Days",
+            difficulty: "Challenging",
+            price: 2200,
+            imageUrl: "/placeholder.svg?height=300&width=400",
+            highlights: [
+              "Sacred Mount Kailash",
+              "Lake Manasarovar",
+              "Saga Dawa Festival (June departure)",
+              "High altitude desert landscape",
+            ],
+            itinerary: [
+              {
+                day: 1,
+                title: "Arrival in Lhasa",
+                description: "Acclimatization and trip briefing",
+                accommodation: "Hotel in Lhasa",
+                meals: "Welcome Dinner",
+              },
+              {
+                day: 2,
+                title: "Lhasa Sightseeing",
+                description: "Visit Sera Monastery and Norbulingka Palace",
+                accommodation: "Hotel in Lhasa",
+                meals: "Breakfast, Lunch",
+              },
+              // ... (other days of the itinerary)
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "4",
+    name: "Bhutan",
+    description: "The last Shangri-La, known for its pristine environment and unique culture",
+    imageUrl: "/placeholder.svg?height=400&width=600",
+    activities: [
+      {
+        id: "6",
+        name: "Cultural Exploration",
+        type: "Sightseeing",
+        description: "Discover Bhutan's rich culture and traditional way of life",
+        imageUrl: "/placeholder.svg?height=300&width=400",
+        trips: [
+          {
+            id: "8",
+            name: "Bhutan Highlights Tour",
+            duration: "7 Days",
+            difficulty: "Easy",
+            price: 1800,
+            imageUrl: "/placeholder.svg?height=300&width=400",
+            highlights: [
+              "Tiger's Nest Monastery",
+              "Punakha Dzong",
+              "Traditional Bhutanese architecture",
+              "Paro and Thimphu sightseeing",
+            ],
+            itinerary: [
+              {
+                day: 1,
+                title: "Arrival in Paro",
+                description: "Welcome ceremony and visit to Paro Dzong",
+                accommodation: "Hotel in Paro",
+                meals: "Welcome Dinner",
+              },
+              {
+                day: 2,
+                title: "Paro to Thimphu",
+                description: "Drive to Thimphu, visit Memorial Chorten and Buddha Point",
+                accommodation: "Hotel in Thimphu",
+                meals: "Breakfast, Lunch, Dinner",
+              },
+              // ... (other days of the itinerary)
+            ],
+          },
+        ],
+      },
+      {
+        id: "7",
+        name: "Himalayan Trekking",
+        type: "Trekking",
+        description: "Trek through Bhutan's pristine forests and mountain landscapes",
+        imageUrl: "/placeholder.svg?height=300&width=400",
+        trips: [
+          {
+            id: "9",
+            name: "Druk Path Trek",
+            duration: "9 Days",
+            difficulty: "Moderate",
+            price: 2500,
+            imageUrl: "/placeholder.svg?height=300&width=400",
+            highlights: [
+              "High altitude lakes",
+              "Ancient lhakhangs (temples)",
+              "Spectacular views of eastern Himalayas",
+              "Phajoding Monastery",
+            ],
+            itinerary: [
+              {
+                day: 1,
+                title: "Arrival in Paro",
+                description: "Acclimatization and trip briefing",
+                accommodation: "Hotel in Paro",
+                meals: "Welcome Dinner",
+              },
+              {
+                day: 2,
+                title: "Paro Sightseeing",
+                description: "Visit Ta Dzong and Rinpung Dzong",
+                accommodation: "Hotel in Paro",
+                meals: "Breakfast, Lunch, Dinner",
+              },
+              // ... (other days of the itinerary)
+            ],
+          },
+        ],
+      },
+    ],
+  },
 ]
 
 export function getDestinations(): Destination[] {
@@ -350,5 +537,9 @@ export function getActivityById(destinationId: string, activityId: string): Acti
 export function getTripById(destinationId: string, activityId: string, tripId: string): Trip | undefined {
   const activity = getActivityById(destinationId, activityId)
   return activity?.trips.find((t) => t.id === tripId)
+}
+
+export function addDestination(newDestination: Destination) {
+  destinations.push(newDestination)
 }
 

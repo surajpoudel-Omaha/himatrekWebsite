@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation"
+import Image from "next/image"
 import { getTripById, getActivityById, getDestinationById } from "@/lib/data"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -27,6 +28,9 @@ export default function TripPage({
           { label: trip.name, href: `/destinations/${destinationId}/activities/${activityId}/trips/${tripId}` },
         ]}
       />
+      <div className="relative h-64 w-full mb-8">
+        <Image src={trip.imageUrl || "/placeholder.svg"} alt={trip.name} fill className="object-cover rounded-lg" />
+      </div>
       <h1 className="text-4xl font-bold mb-4">{trip.name}</h1>
       <div className="flex flex-wrap gap-4 mb-8">
         <Badge variant="outline" className="text-lg py-1 px-3">

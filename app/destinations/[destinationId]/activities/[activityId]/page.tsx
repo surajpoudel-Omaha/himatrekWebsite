@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 import { getActivityById, getDestinationById } from "@/lib/data"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -33,6 +34,14 @@ export default function ActivityPage({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {activity.trips.map((trip) => (
           <Card key={trip.id} className="hover:shadow-lg transition-shadow">
+            <div className="relative h-48 w-full">
+              <Image
+                src={trip.imageUrl || "/placeholder.svg"}
+                alt={trip.name}
+                fill
+                className="object-cover rounded-t-lg"
+              />
+            </div>
             <CardHeader>
               <CardTitle>{trip.name}</CardTitle>
               <CardDescription>Duration: {trip.duration}</CardDescription>
@@ -51,16 +60,6 @@ export default function ActivityPage({
                   {trip.difficulty}
                 </Badge>
                 <Badge variant="outline">${trip.price}</Badge>
-              </div>
-              <div className="mb-4">
-                <h3 className="font-semibold mb-2">Highlights:</h3>
-                <ul className="list-disc list-inside">
-                  {trip.highlights.slice(0, 3).map((highlight, index) => (
-                    <li key={index} className="text-sm text-muted-foreground">
-                      {highlight}
-                    </li>
-                  ))}
-                </ul>
               </div>
               <Link
                 href={`/destinations/${destinationId}/activities/${activityId}/trips/${trip.id}`}
