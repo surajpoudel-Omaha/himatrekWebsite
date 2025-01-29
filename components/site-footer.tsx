@@ -49,31 +49,31 @@ export function SiteFooter() {
             </ul>
           </div>
         </div>
-        <div className="bg-[#2b8dcc] p-8 rounded-lg">
+        <div className="bg-gray-100 p-8 rounded-lg">
             <h3 className="text-xl font-bold text-black mb-6 text-center">Contact Info</h3>
             <div className="flex flex-col md:flex-row md:justify-between gap-6">
               <div className="text-center">
                 <h4 className="text-lg font-semibold text-black mb-2">Nepal</h4>
-                <div className="flex flex-wrap justify-center gap-4 text-sm text-black whitespace-nowrap">
-                  <p>123 Adventure Street, Kathmandu, Nepal</p>
-                  <p>Phone: +977 1234567890</p>
-                  <p>Email: info@himatrek.com</p>
+                <div className="flex flex-col justify-center gap-4 text-sm text-black ">
+                  <p>Sitapaila, Kathmandu, Nepal</p>
+                  <p>Phone: +977 1-4034927</p>
+                  <p>Email: info@himatreknepal.com</p>
                 </div>
               </div>
               <div className="text-center">
                 <h4 className="text-lg font-semibold text-black mb-2">USA</h4>
-                <div className="flex flex-wrap justify-center gap-4 text-sm text-black whitespace-nowrap">
-                  <p>9410 S 178th Street, Omaha, NE, USA</p>
+                <div className="flex flex-col justify-center gap-4 text-sm text-black ">
+                  <p>9410 S 178th Street Omaha, NE, USA</p>
                   <p>Phone: +1 531 721 8945</p>
                   <p>Email: info@himatrek.com</p>
                 </div>
               </div>
               <div className="text-center">
                 <h4 className="text-lg font-semibold text-black mb-2">Germany</h4>
-                <div className="flex flex-wrap justify-center gap-4 text-sm text-black whitespace-nowrap">
-                  <p>123 Adventure Street, Kathmandu, Nepal</p>
-                  <p>Phone: +977 1234567890</p>
-                  <p>Email: info@himatrek.com</p>
+                <div className="flex flex-col justify-center gap-4 text-sm text-black">
+                  <p>Hüssenerstr. 9 D-45886 Gelsenkirchen</p>
+                  <p>Phone: +49 (0) 40 7224633</p>
+                  <p>Email: info@himatrek.de</p>
                 </div>
               </div>
             </div>

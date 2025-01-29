@@ -543,3 +543,9 @@ export function addDestination(newDestination: Destination) {
   destinations.push(newDestination)
 }
 
+export function updateTrip(
+destinationId: string, activityId: string, tripId: string, trip: Trip,
+){
+  console.log(destinationId, activityId, tripId) 
+}
+
