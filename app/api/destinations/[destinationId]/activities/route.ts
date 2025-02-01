@@ -1,4 +1,4 @@
-function updateDestination(destinationId) {
+function updateDestination(destinationId: string | number) {
   // Check if destinationId is valid
   if (!destinationId || typeof destinationId !== "string") {
     console.error("Invalid destinationId provided.")
